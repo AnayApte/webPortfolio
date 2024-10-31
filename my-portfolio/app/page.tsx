@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Linkedin, Github, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -8,28 +8,31 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from "next/image"
 
 function Header({ activeSection, scrollToSection }) {
+  const sections = ['home', 'experience', 'skills', 'awards']
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-background border-b border-border z-50">
       <div className="container mx-auto py-2">
         <nav className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center">
             <Image
               src="/images/microchip.png"
               alt="Microchip logo"
-              width={48}
-              height={48}
+              width={96}
+              height={96}
               className="object-contain"
             />
-            <span className="text-2xl font-bold">Anay Apte</span>
+            <span className="text-4xl font-bold">Anay Apte</span>
           </div>
         </nav>
         <div className="flex justify-center mt-2 space-x-1 overflow-x-auto">
-          {['home', 'experience', 'skills', 'awards'].map((section) => (
+          {sections.map((section) => (
             <Button
               key={section}
               onClick={() => scrollToSection(section)}
               variant={activeSection === section ? "default" : "ghost"}
               size="sm"
+              className="transition-none"
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </Button>
@@ -44,14 +47,14 @@ function AwardCard({ organization, achievements, imagePath }) {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>{organization}</CardTitle>
+            <CardTitle className="text-2xl">{organization}</CardTitle>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               {achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
+                <li key={index} className="text-xl">{achievement}</li>
               ))}
             </ul>
           </CardContent>
@@ -78,16 +81,16 @@ function OnePercentBetterCard() {
 
   const slides = [
     {
+      image: '/images/profile.png',
+      description: 'Profile setup page. Asks user for their health information, including but not limited to height, weight, age, etc.'
+    },
+    {
       image: '/images/calorieGallery.png',
-      description: 'Comprehensive calorie tracking interface with detailed nutritional information and progress visualization.'
+      description: 'Recipes page. Utilizes Edamam API to generate 1000+ recipes. Uses a calculated daily caloric goal from profile to generate recommended recipes.'
     },
     {
       image: '/images/powerHour.png',
-      description: 'Power Hour feature helping users maximize their productivity with focused time blocks and achievement tracking.'
-    },
-    {
-      image: '/images/profile.png',
-      description: 'Habit dashboard showcasing daily streaks, completion rates, and personalized insights for continuous improvement.'
+      description: 'Workout page. Integrates ExerciseDB API to provide 100+ exercises. Multi-table setup in Supabase allows tracking of various metrics, including one-rep-max.'
     }
   ]
 
@@ -102,18 +105,18 @@ function OnePercentBetterCard() {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>One Percent Better</CardTitle>
-            <CardDescription>Habit Tracking Application</CardDescription>
+            <CardTitle className="text-2xl">One Percent Better</CardTitle>
+            <CardDescription className="text-xl">Better Each Day, In Every Way</CardDescription>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li>Developed a comprehensive habit tracking application focused on incremental improvement</li>
-              <li>Implemented calorie tracking and nutritional analysis features</li>
-              <li>Created Power Hour productivity tracking system</li>
-              <li>Built with React Native and Firebase for real-time data synchronization</li>
-              <li>Integrated data visualization for progress tracking</li>
+              <li className="text-lg">Developed a comprehensive health and wellness application, serving as a one-stop shop improvement.</li>
+              <li className="text-lg">Implemented diverse features including a workout tracker, calorie counter, recipes page, meditation station, and much more.</li>
+              <li className="text-lg">Integrated multiple APIs including Google Gemini, Edamam API, and ExerciseDB API, showcasing proficiency in API integration and data management.</li>
+              <li className="text-lg">Utilized React Native for cross-platform compatibility and Supabase (PostgreSQL-based) for backend support.</li>
+              <li className="text-lg">Led a team of four in creating this application for the Congressional App Challenge.</li>
             </ul>
           </CardContent>
         </div>
@@ -190,16 +193,16 @@ function NCHSNavCard() {
 
   const slides = [
     {
-      image: '/images/mappedin.png',
-      description: 'Integration with MappedinWeb SDK provides an interactive, dynamic 3D map of the school building, allowing for precise navigation and location services.'
+      image: '/images/schoolMap.png',
+      description: 'Proprietary school map interface displaying all floors, classrooms, and facilities. Utilized QGIS software to vectorize and map school floor plans onto planet.'
     },
     {
       image: '/images/schedule.png',
-      description: 'Personalized schedule view helps students manage their daily classes, showing room numbers and optimal routes between classrooms.'
+      description: 'Personalized schedule view for students to input their room numbers and find classroom names. Integrated with MappedIn SDK for enhanced functionality.'
     },
     {
-      image: '/images/schoolMap.png',
-      description: 'Comprehensive school map interface displaying all floors, classrooms, and facilities with real-time navigation assistance.'
+      image: '/images/mappedin.png',
+      description: 'Leveraged iFrame and MappedIn SDK to calculate the distance and determine the fastest route from a user\'s current location to a given classroom.'
     }
   ]
 
@@ -214,18 +217,19 @@ function NCHSNavCard() {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>NCHS Nav</CardTitle>
-            <CardDescription>Mobile Navigation Application</CardDescription>
+            <CardTitle className="text-2xl">NCHS Nav</CardTitle>
+            <CardDescription className="text-xl">Making Navigation Easier, One Step At A Time</CardDescription>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li>Developed a mobile application to help students navigate Naperville Central High School</li>
-              <li>Implemented turn-by-turn directions and classroom schedules</li>
-              <li>Integrated real-time updates for school events and room changes</li>
-              <li>Used React Native and MappedinWeb SDK for seamless navigation</li>
-              <li>Implemented user authentication and personalized schedules</li>
+              <li className="text-lg">Created of a web app to streamline navigation within Naperville Central High School.</li>
+              <li className="text-lg">Utilized QGIS vectorization software to accurately map school floor plans.</li>
+              <li className="text-lg">Implemented a classroom schedule feature by integrating Google OAuth and establishing a connection to Infinite Campus.</li>
+              <li className="text-lg">Leveraged NextJS and MappedIn SDK to create a seamless and intuitive navigation experience.</li>
+              <li className="text-lg">Collaborated in a team of three over seven months, successfully delivering the project across four sprints.</li>
+              <li className="text-lg">Applied Agile methodologies, including sprints, retrospectives, and daily scrums for a more responsive product.</li>
             </ul>
           </CardContent>
         </div>
@@ -297,35 +301,56 @@ function NCHSNavCard() {
   )
 }
 
-function VolunteerCard({ title, organization, period, description, imagePath }) {
+function AndMuchMoreCard() {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>{organization} • {period}</CardDescription>
+            <CardTitle className="text-2xl">And So Much More...</CardTitle>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              {description.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
+              <li className="text-lg">Cityscape Project: Developed a Java animation utilizing loops and classes to create a dynamic, moving city scene for my APCSA class.</li>
+              <li className="text-lg">Maze Solver Project: Engineered a Java program employing advanced class structures to solve complex mazes, providing step-by-step solutions and identifying unsolvable scenarios for my Software Engineering course.</li>
+              <li className="text-lg">Video 4Ever Project: Created a React-Native web application interfacing with a phpMyAdmin SQL database to display video store pricing given a dataset.</li>
+            </ul>
+          </CardContent>
+          <CardHeader className="px-0 pt-0">
+            <CardTitle className="text-2xl">Including Some Fun Projects!</CardTitle>
+          </CardHeader>
+          <CardContent className="px-0">
+            <ul className="list-disc list-inside space-y-2">
+              <li className="text-lg">LeBron James Collage: Leveraged Java classes and loops to manipulate image pixels, creating a goofy picture collage of LeBron James for my APCSA class.</li>
+              <li className="text-lg">DJ Khaled Soundboard: Utilized Raspberry Pi and Python to develop an interactive soundboard featuring DJ Khaled clips in my Software Engineering class.</li>
             </ul>
           </CardContent>
         </div>
         
         <div className="relative">
-          <div className="relative aspect-[3/2]">
+          <div className="relative aspect-video">
             <Image
-              src={imagePath}
-              alt={`${organization} logo`}
+              src="/images/githubPic.png"
+              alt="GitHub profile screenshot"
               fill
               className="object-contain"
               priority
             />
           </div>
+          
+          <div className="mt-4">
+            <p className="text-sm text-gray-600">
+              Explore my GitHub profile for a comprehensive view of my  projects!
+            </p>
+          </div>
         </div>
+      </div>
+      <div className="mt-6 flex justify-center">
+        <Button asChild className="w-full max-w-md">
+          <a href="https://github.com/anayapte" target="_blank" rel="noopener noreferrer">
+            View GitHub Profile
+          </a>
+        </Button>
       </div>
     </Card>
   )
@@ -336,16 +361,16 @@ function RudderVirtCard() {
 
   const slides = [
     {
-      image: '/images/RudderAPI.png',
-      description: 'RudderVirt API documentation page, showcasing the backend architecture and available endpoints for seamless integration.'
-    },
-    {
       image: '/images/RudderUI.png',
-      description: 'User interface of RudderVirt, demonstrating the intuitive design for managing virtual classrooms and student interactions.'
+      description: '500 error page developed as part of the RudderVirt user interface & frontend design improvements.'
     },
     {
       image: '/images/RudderVS.png',
-      description: 'Visual Studio Code integration with RudderVirt, allowing for real-time code collaboration and teaching in a virtual environment.'
+      description: 'Backend code snippet showcasing the implementation of Drizzle ORM for efficient storage and management of classroom data, including student and teacher information.'
+    },
+    {
+      image: '/images/RudderAPI.png',
+      description: 'API implementation of Cloudflare Turnstile, enhancing security measures for login and signup functionalities.'
     }
   ]
 
@@ -360,16 +385,18 @@ function RudderVirtCard() {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>Software Engineering Intern</CardTitle>
-            <CardDescription>Eigenvector LLC • Summer 2023</CardDescription>
+            <CardTitle className="text-2xl">Software Engineering Intern</CardTitle>
+            <CardDescription className="text-xl">Eigenvector LLC • 2024 - Present</CardDescription>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li>Developed and maintained web applications using React and Node.js</li>
-              <li>Collaborated with the team to implement new features and improve existing ones</li>
-              <li>Participated in code reviews and contributed to the company's best practices</li>
+              <li className="text-lg">Contributed to both frontend and backend development of RudderVirt using PostgreSQL, Sveltekit, and TypeScript, demonstrating full-stack capabilities.</li>
+              <li className="text-lg">Designed and implemented various UI components, including a dynamic theme toggling feature and comprehensive page redesigns.</li>
+              <li className="text-lg">Engineered a fully functional classroom assignment page with a focus on robust server-side logic.</li>
+              <li className="text-lg">Successfully integrated Cloudflare Turnstile API to improve login security, showcasing skills in API integration.</li>
+              <li className="text-lg">Learned both client-side and server-side testing methodologies to ensure feature integrity across different environments.</li>
             </ul>
           </CardContent>
         </div>
@@ -391,7 +418,6 @@ function RudderVirtCard() {
                   priority
                 />
               </div>
-            
             ))}
             
             <button
@@ -439,16 +465,16 @@ function ArgonneCard() {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
-        <div>
+        <div className="text-center">
           <CardHeader className="px-0 pt-0">
-            <CardTitle>Argonne ESRP Data Analysis Team</CardTitle>
-            <CardDescription>Argonne National Laboratory • 2022 - 2023</CardDescription>
+            <CardTitle className="text-2xl">Argonne ESRP Data Analysis Team</CardTitle>
+            <CardDescription className="text-xl">Argonne National Laboratory • 2023 - Present</CardDescription>
           </CardHeader>
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li>Conducted data analysis on large-scale scientific datasets</li>
-              <li>Developed machine learning models to predict experimental outcomes</li>
-              <li>Collaborated with researchers to interpret and present findings</li>
+              <li className="text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
+              <li className="text-lg">Contributed to research analyzing the toxic effects of Cadmium Selenide quantum dots uptake in plants.</li>
+              <li className="text-lg">Utilized the pandas library in Python to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
             </ul>
           </CardContent>
         </div>
@@ -463,11 +489,39 @@ function ArgonneCard() {
               priority
             />
           </div>
-          
-          <div className="mt-4">
-            <p className="text-sm text-gray-600">
-              Argonne National Laboratory is a science and engineering research national laboratory operated by the University of Chicago for the U.S. Department of Energy.
-            </p>
+        </div>
+      </div>
+    </Card>
+  )
+}
+
+function VolunteerCard({ title, organization, period, description, imagePath }) {
+  return (
+    <Card className="p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+        <div className="text-center">
+          <CardHeader className="px-0 pt-0">
+            <CardTitle className="text-2xl">{title}</CardTitle>
+            <CardDescription className="text-xl">{organization} • {period}</CardDescription>
+          </CardHeader>
+          <CardContent className="px-0">
+            <ul className="list-disc list-inside space-y-2">
+              {description.map((item, index) => (
+                <li key={index} className="text-lg">{item}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </div>
+        
+        <div className="relative">
+          <div className="relative aspect-[3/2]">
+            <Image
+              src={imagePath}
+              alt={`${organization} logo`}
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
       </div>
@@ -487,27 +541,26 @@ const awards = [
   {
     organization: "Business Professionals of America (BPA)",
     achievements: [
-      "1st Place - State Leadership Conference, Web Application Team (2023)",
-      "3rd Place - National Leadership Conference, Web Application Team (2023)",
-      "1st Place - Regional Leadership Conference, Java Programming (2022)"
+      "Top 15 - National Leadership Conference, C++ Programming (2024)",
+      "3rd Place - State Leadership Conference, C++ Programming (2024)",
+      "State Qualifier - State Leadership Conference, Python Programming (2022)"
     ],
     imagePath: "/images/BPA.jpg"
   },
   {
     organization: "Naperville School District 203",
     achievements: [
-      "Outstanding CS Student of the Year (2023)",
-      "1st Place - District-wide Hackathon (2022)",
-      "Perfect Attendance Award (2021-2023)"
+      "Career & Technical Education Student of the Month (2024)",
+      "Completed rigorous requirements to earn an endorsement in the Programming & Software Development Career Path from the state of Illinois.",
     ],
     imagePath: "/images/naperville.png"
   },
   {
     organization: "College Board",
     achievements: [
-      "AP Scholar with Distinction (2023)",
-      "Perfect Score - AP Computer Science A Exam (2022)",
-      "Perfect Score - AP Calculus BC Exam (2023)"
+      "AP Scholar with Distinction (2024)",
+      "Received a Score of 5 - AP Computer Science A (2023)",
+      "Received a Score of 5 - AP Calculus BC Exam (2023)"
     ],
     imagePath: "/images/collegeBoard.png"
   }
@@ -518,44 +571,43 @@ export default function Portfolio() {
   const volunteerPositions = [
     {
       title: "Co-Founder & Director",
-      organization: "CodeBytes Computer Science Camp",
-      period: "2021 - Present",
+      organization: "CodeBytes Youth Computer Science Camp",
+      period: "2024 - Present",
       description: [
-        "Founded and directed a summer camp teaching computer science to middle and high school students",
-        "Developed comprehensive curriculum covering programming fundamentals",
-        "Managed team of instructors and coordinated camp activities"
+        "Founded and directed a comprehensive five-week introductory camp, successfully teaching Python programming to over 70 middle school students.",
+        "Developed and implemented an engaging curriculum covering fundamental programming concepts.",
+        "Effectively managed a team of 20+ volunteer instructors, coordinating camp scheduling, lesson planning, and interactive activities to ensure a high-quality learning experience."
       ],
       imagePath: "/images/codebytes.png"
     },
     {
-      title: "Volunteer",
-      organization: "Power Up Project",
-      period: "2020 - Present",
-      description: [
-        "Assisted in providing technology education to underserved communities",
-        "Conducted workshops on basic computer skills and internet safety",
-        "Helped develop educational materials and resources"
-      ],
-      imagePath: "/images/powerUp.png"
-    },
-    {
       title: "Data Manager",
       organization: "The Merry Tutor",
-      period: "2022 - Present",
+      period: "2024 - Present",
       description: [
-        "Managed and analyzed data for free tutoring services",
-        "Implemented data-driven strategies to improve tutoring effectiveness",
-        "Coordinated with team members to optimize resource allocation"
+        "Leveraged advanced SQL queries to efficiently manage data for over 200 tutoring sessions and multiple tutors, ensuring accurate record-keeping and performance tracking.",
+        "Generated comprehensive monthly reports by analyzing trends in attendance, tutoring session outcomes, and other key metrics, providing insights for organizational improvement.",
+        "Collaborated effectively within a team of four data managers."
       ],
       imagePath: "/images/merry.png"
+    },
+    {
+      title: "Volunteer",
+      organization: "Power Up Project",
+      period: "2024 - Present",
+      description: [
+        "Played a key role in coordinating technology donations and refurbishing computers, contributing to digital equity initiatives.",
+        "Led the largest technology donation drive for Power Up through Aurora libraries, successfully collecting over 50 used computers. The initiative was featured on NCTV17.",
+        "Actively contributed to developing community engagement strategies, including tech drives and awareness campaigns."
+      ],
+      imagePath: "/images/powerUp.png"
     }
   ]
 
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId)
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offset = 80 // Reduced offset for header
+      const offset = 80
       const bodyRect = document.body.getBoundingClientRect().top
       const elementRect = element.getBoundingClientRect().top
       const elementPosition = elementRect - bodyRect
@@ -565,13 +617,16 @@ export default function Portfolio() {
         top: offsetPosition,
         behavior: 'smooth'
       })
+      
+      // Set active section after scrolling
+      setActiveSection(sectionId)
     }
-  }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'experience', 'skills', 'awards']
-      const scrollPosition = window.scrollY + 100 // Reduced offset for header
+      const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -642,12 +697,11 @@ export default function Portfolio() {
             <div className="w-full text-center">
               <h3 className="text-4xl font-extrabold mb-4">About Me</h3>
               <p className="text-lg max-w-none">
-                I'm a passionate computer science student with a keen interest in artificial intelligence and machine learning.
-                I love solving complex problems and building innovative solutions that can make a positive impact on the world.
-                My journey in the world of technology has been driven by curiosity and a desire to push the boundaries of what's possible.
-                From developing cutting-edge algorithms to creating user-friendly applications, I'm always eager to take on new challenges
-                and learn from every experience. As I continue to grow in my field, I'm excited about the possibilities that lie ahead
-                and the potential to contribute to groundbreaking advancements in technology.
+              Hello! My name is Anay Apte and I am a graduating senior in the Class of 2025 at Naperville Central High School. 
+              Through the past four years, I've developed a burning passion for computer science, specifically in Artificial Intelligence 
+              and Web/App Development. My biggest dream is to one day help solve the world's problems through computer science. 
+              In this portfolio, you'll find all the CS-related activities I've been involved in throughout high school. 
+              Regardless of what you choose to look at, I hope you enjoy learning more about me and my passions!
               </p>
             </div>
           </div>
@@ -664,9 +718,7 @@ export default function Portfolio() {
             <TabsContent value="projects" className="space-y-4">
               <OnePercentBetterCard />
               <NCHSNavCard />
-              <div className="mt-8">
-                <h3 className="text-xl font-semibold mb-4">And Much More Including:</h3>
-              </div>
+              <AndMuchMoreCard />
             </TabsContent>
             <TabsContent value="internships" className="space-y-4">
               <RudderVirtCard />
