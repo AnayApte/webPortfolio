@@ -465,7 +465,7 @@ function ArgonneCard() {
             <ul className="list-disc list-inside space-y-2">
               <li className="text-sm sm:text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
               <li className="text-sm sm:text-lg">Contributed to research analyzing the toxic effects of Cadmium Selenide quantum dots uptake in plants.</li>
-              <li className="text-sm sm:text-lg">Utilized the pandas library in Python to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
+              <li className="text-sm sm:text-lg">Utilized spreadsheet formulas in Google Sheets to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
             </ul>
           </CardContent>
         </div>
