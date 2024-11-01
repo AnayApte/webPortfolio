@@ -16,31 +16,31 @@ function Header({ activeSection, scrollToSection }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 bg-background border-b border-border z-50">
       <div className="container mx-auto py-2">
-        <nav className="flex justify-between items-center">
-          <div className="flex items-center">
+        <nav className="flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex items-center mb-2 sm:mb-0">
             <Image
               src="/images/microchip.png"
               alt="Microchip logo"
-              width={96}
-              height={96}
-              className="object-contain"
+              width={48}
+              height={48}
+              className="object-contain mr-2"
             />
-            <span className="text-4xl font-bold">Anay Apte</span>
+            <span className="text-2xl sm:text-4xl font-bold">Anay Apte</span>
+          </div>
+          <div className="flex justify-center mt-2 space-x-1 overflow-x-auto">
+            {sections.map((section) => (
+              <Button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                variant={activeSection === section ? "contained" : "text"}
+                size="small"
+                className="transition-none text-xs sm:text-sm"
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Button>
+            ))}
           </div>
         </nav>
-        <div className="flex justify-center mt-2 space-x-1 overflow-x-auto">
-          {sections.map((section) => (
-            <Button
-              key={section}
-              onClick={() => scrollToSection(section)}
-              variant={activeSection === section ? "contained" : "text"}
-              size="small"
-              className="transition-none"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </Button>
-          ))}
-        </div>
       </div>
     </header>
   )
@@ -54,14 +54,14 @@ interface AwardCardProps {
 
 function AwardCard({ organization, achievements, imagePath }: AwardCardProps) {
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title={organization} className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               {achievements.map((achievement, index) => (
-                <li key={index} className="text-xl">{achievement}</li>
+                <li key={index} className="text-sm sm:text-xl">{achievement}</li>
               ))}
             </ul>
           </CardContent>
@@ -115,17 +115,17 @@ function OnePercentBetterCard() {
   }
 
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title="One Percent Better" subheader="Better Each Day, In Every Way" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">Developed a comprehensive health and wellness application, serving as a one-stop shop improvement.</li>
-              <li className="text-lg">Implemented diverse features including a workout tracker, calorie counter, recipes page, meditation station, and much more.</li>
-              <li className="text-lg">Integrated multiple APIs including Google Gemini, Edamam API, and ExerciseDB API, showcasing proficiency in API integration and data management.</li>
-              <li className="text-lg">Utilized React Native for cross-platform compatibility and Supabase (PostgreSQL-based) for backend support.</li>
-              <li className="text-lg">Led a team of four in creating this application for the Congressional App Challenge.</li>
+              <li className="text-sm sm:text-lg">Developed a comprehensive health and wellness application, serving as a one-stop shop improvement.</li>
+              <li className="text-sm sm:text-lg">Implemented diverse features including a workout tracker, calorie counter, recipes page, meditation station, and much more.</li>
+              <li className="text-sm sm:text-lg">Integrated multiple APIs including Google Gemini, Edamam API, and ExerciseDB API, showcasing proficiency in API integration and data management.</li>
+              <li className="text-sm sm:text-lg">Utilized React Native for cross-platform compatibility and Supabase (PostgreSQL-based) for backend support.</li>
+              <li className="text-sm sm:text-lg">Led a team of four in creating this application for the Congressional App Challenge.</li>
             </ul>
           </CardContent>
         </div>
@@ -167,7 +167,7 @@ function OnePercentBetterCard() {
           </div>
           
           <div className="mt-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               {slides[currentImageIndex].description}
             </p>
           </div>
@@ -222,18 +222,18 @@ function NCHSNavCard() {
   }
 
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title="NCHS Nav" subheader="Making Navigation Easier, One Step At A Time" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">Created of a web app to streamline navigation within Naperville Central High School.</li>
-              <li className="text-lg">Utilized QGIS vectorization software to accurately map school floor plans.</li>
-              <li className="text-lg">Implemented a classroom schedule feature by integrating Google OAuth and establishing a connection to Infinite Campus.</li>
-              <li className="text-lg">Leveraged NextJS and MappedIn SDK to create a seamless and intuitive navigation experience.</li>
-              <li className="text-lg">Collaborated in a team of three over seven months, successfully delivering the project across four sprints.</li>
-              <li className="text-lg">Applied Agile methodologies, including sprints, retrospectives, and daily scrums for a more responsive product.</li>
+              <li className="text-sm sm:text-lg">Created of a web app to streamline navigation within Naperville Central High School.</li>
+              <li className="text-sm sm:text-lg">Utilized QGIS vectorization software to accurately map school floor plans.</li>
+              <li className="text-sm sm:text-lg">Implemented a classroom schedule feature by integrating Google OAuth and establishing a connection to Infinite Campus.</li>
+              <li className="text-sm sm:text-lg">Leveraged NextJS and MappedIn SDK to create a seamless and intuitive navigation experience.</li>
+              <li className="text-sm sm:text-lg">Collaborated in a team of three over seven months, successfully delivering the project across four sprints.</li>
+              <li className="text-sm sm:text-lg">Applied Agile methodologies, including sprints, retrospectives, and daily scrums for a more responsive product.</li>
             </ul>
           </CardContent>
         </div>
@@ -275,7 +275,7 @@ function NCHSNavCard() {
           </div>
           
           <div className="mt-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               {slides[currentImageIndex].description}
             </p>
           </div>
@@ -305,22 +305,22 @@ function NCHSNavCard() {
 
 function AndMuchMoreCard() {
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title="And So Much More..." className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">Cityscape Project: Developed a Java animation utilizing loops and classes to create a dynamic, moving city scene for my APCSA class.</li>
-              <li className="text-lg">Maze Solver Project: Engineered a Java program employing advanced class structures to solve complex mazes, providing step-by-step solutions and identifying unsolvable scenarios for my Software Engineering course.</li>
-              <li className="text-lg">Video 4Ever Project: Created a React-Native web application interfacing with a phpMyAdmin SQL database to display video store pricing given a dataset.</li>
+              <li className="text-sm sm:text-lg">Cityscape Project: Developed a Java animation utilizing loops and classes to create a dynamic, moving city scene for my APCSA class.</li>
+              <li className="text-sm sm:text-lg">Maze Solver Project: Engineered a Java program employing advanced class structures to solve complex mazes, providing step-by-step solutions and identifying unsolvable scenarios for my Software Engineering course.</li>
+              <li className="text-sm sm:text-lg">Video 4Ever Project: Created a React-Native web application interfacing with a phpMyAdmin SQL database to display video store pricing given a dataset.</li>
             </ul>
           </CardContent>
           <CardHeader title="Including Some Fun Projects!" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">LeBron James Collage: Leveraged Java classes and loops to manipulate image pixels, creating a goofy picture collage of LeBron James for my APCSA class.</li>
-              <li className="text-lg">DJ Khaled Soundboard: Utilized Raspberry Pi and Python to develop an interactive soundboard featuring DJ Khaled clips in my Software Engineering class.</li>
+              <li className="text-sm sm:text-lg">LeBron James Collage: Leveraged Java classes and loops to manipulate image pixels, creating a goofy picture collage of LeBron James for my APCSA class.</li>
+              <li className="text-sm sm:text-lg">DJ Khaled Soundboard: Utilized Raspberry Pi and Python to develop an interactive soundboard featuring DJ Khaled clips in my Software Engineering class.</li>
             </ul>
           </CardContent>
         </div>
@@ -337,8 +337,9 @@ function AndMuchMoreCard() {
           </div>
           
           <div className="mt-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               Explore my GitHub profile for a comprehensive view of my projects!
+            
             </p>
           </div>
         </div>
@@ -353,7 +354,7 @@ function AndMuchMoreCard() {
 }
 
 function RudderVirtCard() {
-  const [currentImageIndex,   setCurrentImageIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const slides: Slide[] = [
     {
@@ -379,17 +380,17 @@ function RudderVirtCard() {
   }
 
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title="Software Engineering Intern" subheader="Eigenvector LLC • 2024 - Present" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">Contributed to both frontend and backend development of RudderVirt using PostgreSQL, Sveltekit, and TypeScript, demonstrating full-stack capabilities.</li>
-              <li className="text-lg">Designed and implemented various UI components, including a dynamic theme toggling feature and comprehensive page redesigns.</li>
-              <li className="text-lg">Engineered a fully functional classroom assignment page with a focus on robust server-side logic.</li>
-              <li className="text-lg">Successfully integrated Cloudflare Turnstile API to improve login security, showcasing skills in API integration.</li>
-              <li className="text-lg">Learned both client-side and server-side testing methodologies to ensure feature integrity across different environments.</li>
+              <li className="text-sm sm:text-lg">Contributed to both frontend and backend development of RudderVirt using PostgreSQL, Sveltekit, and TypeScript, demonstrating full-stack capabilities.</li>
+              <li className="text-sm sm:text-lg">Designed and implemented various UI components, including a dynamic theme toggling feature and comprehensive page redesigns.</li>
+              <li className="text-sm sm:text-lg">Engineered a fully functional classroom assignment page with a focus on robust server-side logic.</li>
+              <li className="text-sm sm:text-lg">Successfully integrated Cloudflare Turnstile API to improve login security, showcasing skills in API integration.</li>
+              <li className="text-sm sm:text-lg">Learned both client-side and server-side testing methodologies to ensure feature integrity across different environments.</li>
             </ul>
           </CardContent>
         </div>
@@ -431,7 +432,7 @@ function RudderVirtCard() {
           </div>
           
           <div className="mt-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               {slides[currentImageIndex].description}
             </p>
           </div>
@@ -456,15 +457,15 @@ function RudderVirtCard() {
 
 function ArgonneCard() {
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title="Argonne ESRP Data Analysis Team" subheader="Argonne National Laboratory • 2023 - Present" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
-              <li className="text-lg">Contributed to research analyzing the toxic effects of Cadmium Selenide quantum dots uptake in plants.</li>
-              <li className="text-lg">Utilized the pandas library in Python to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
+              <li className="text-sm sm:text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
+              <li className="text-sm sm:text-lg">Contributed to research analyzing the toxic effects of Cadmium Selenide quantum dots uptake in plants.</li>
+              <li className="text-sm sm:text-lg">Utilized the pandas library in Python to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
             </ul>
           </CardContent>
         </div>
@@ -495,14 +496,14 @@ interface VolunteerCardProps {
 
 function VolunteerCard({ title, organization, period, description, imagePath }: VolunteerCardProps) {
   return (
-    <Card className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
+    <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
           <CardHeader title={title} subheader={`${organization} • ${period}`} className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               {description.map((item, index) => (
-                <li key={index} className="text-lg">{item}</li>
+                <li key={index} className="text-sm sm:text-lg">{item}</li>
               ))}
             </ul>
           </CardContent>
@@ -654,37 +655,37 @@ export default function Portfolio() {
     <div className="min-h-screen bg-background text-foreground relative">
       <Header activeSection={activeSection} scrollToSection={scrollToSection} />
 
-      <main className="container mx-auto space-y-16 mt-32 bg-background">
+      <main className="container mx-auto space-y-16 mt-32 px-4 sm:px-0 bg-background">
         <section id="home" className="pt-8">
           <div className="space-y-16">
             <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8 items-center w-full">
               <div className="space-y-8 flex flex-col justify-center">
                 <div className="space-y-4">
-                  <h2 className="text-4xl font-extrabold">Anay Apte</h2>
-                  <p className="text-xl text-muted-foreground">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold">Anay Apte</h2>
+                  <p className="text-lg sm:text-xl text-muted-foreground">
                     Aspiring CS & Business Student | Software & Machine Learning Engineer | Social Entrepreneur
                   </p>
                 </div>
-                <div className="flex flex-col space-y-6 text-lg">
-                  <p className="w-full"><span className="font-bold text-xl">Email:</span> <span className="text-xl">apte_anay@outlook.com</span></p>
-                  <p className="w-full"><span className="font-bold text-xl">Phone:</span> <span className="text-xl">331-401-8123</span></p>
-                  <div className="flex space-x-8 w-full">
+                <div className="flex flex-col space-y-6 text-base sm:text-lg">
+                  <p className="w-full"><span className="font-bold text-lg sm:text-xl">Email:</span> <span className="text-lg sm:text-xl">apte_anay@outlook.com</span></p>
+                  <p className="w-full"><span className="font-bold text-lg sm:text-xl">Phone:</span> <span className="text-lg sm:text-xl">331-401-8123</span></p>
+                  <div className="flex space-x-4 sm:space-x-8 w-full">
                     <a
                       href="https://linkedin.com/in/anay-apte-a1a123258/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center hover:text-primary transition-colors duration-200 text-xl"
+                      className="flex items-center hover:text-primary transition-colors duration-200 text-lg sm:text-xl"
                     >
-                      <LinkedIn className="w-8 h-8 mr-2" />
+                      <LinkedIn className="w-6 h-6 sm:w-8 sm:h-8 mr-2" />
                       LinkedIn
                     </a>
                     <a
                       href="https://github.com/anayapte"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center hover:text-primary transition-colors duration-200 text-xl"
+                      className="flex items-center hover:text-primary transition-colors duration-200 text-lg sm:text-xl"
                     >
-                      <GitHub className="w-8 h-8 mr-2" />
+                      <GitHub className="w-6 h-6 sm:w-8 sm:h-8 mr-2" />
                       GitHub
                     </a>
                   </div>
@@ -701,8 +702,8 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="w-full text-center">
-              <h3 className="text-4xl font-extrabold mb-4">About Me</h3>
-              <p className="text-lg max-w-none">
+              <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">About Me</h3>
+              <p className="text-base sm:text-lg max-w-none">
               Hello! My name is Anay Apte and I am a graduating senior in the Class of 2025 at Naperville Central High School. 
               Through the past four years, I've developed a burning passion for computer science, specifically in Artificial Intelligence 
               and Web/App Development. My biggest dream is to one day help solve the world's problems through computer science. 
@@ -714,18 +715,19 @@ export default function Portfolio() {
         </section>
 
         <section id="experience" className="space-y-4 bg-background text-center border-t-2 border-gray-200 pt-16">
-          <h2 className="text-4xl font-extrabold mb-8">Experience</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-8">Experience</h2>
           <Tabs
             value={activeTab}
             onChange={(event: React.SyntheticEvent, newValue: string) => setActiveTab(newValue)}
             centered
+            className="max-w-full overflow-x-auto"
           >
             <Tab label="Projects" value="projects" />
             <Tab label="Internships & Research" value="internships" />
             <Tab label="Volunteering" value="volunteering" />
           </Tabs>
           <div className="mt-4">
-            {activeTab ===   'projects' && (
+            {activeTab === 'projects' && (
               <div className="space-y-4">
                 <OnePercentBetterCard />
                 <NCHSNavCard />
@@ -749,11 +751,11 @@ export default function Portfolio() {
         </section>
 
         <section id="skills" className="space-y-8 bg-background text-center border-t-2 border-gray-200 pt-16">
-          <h2 className="text-4xl font-extrabold">Proficient in these Programming Languages</h2>
-          <div className="grid grid-cols-5 gap-4 w-full px-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold">Proficient in these Programming Languages</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 w-full px-4">
             {programmingLanguages.map((lang) => (
               <div key={lang.name} className="flex flex-col items-center">
-                <div className="w-24 h-24 relative mb-4">
+                <div className="w-16 h-16 sm:w-24 sm:h-24 relative mb-4">
                   <Image
                     src={lang.icon}
                     alt={`${lang.name} icon`}
@@ -762,14 +764,14 @@ export default function Portfolio() {
                     className="transition-all duration-300 hover:scale-110"
                   />
                 </div>
-                <span className="text-xl text-muted-foreground">{lang.name}</span>
+                <span className="text-base sm:text-xl text-muted-foreground">{lang.name}</span>
               </div>
             ))}
           </div>
         </section>
 
         <section id="awards" className="space-y-4 bg-background text-center border-t-2 border-gray-200 pt-16">
-          <h2 className="text-4xl font-extrabold mb-8">Awards & Achievements</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-8">Awards & Achievements</h2>
           <div className="space-y-4">
             {awards.map((award, index) => (
               <AwardCard key={index} {...award} />
