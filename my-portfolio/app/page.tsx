@@ -1,13 +1,16 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Linkedin, Github, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button, Card, CardContent, CardHeader, Tabs, Tab, IconButton } from '@mui/material'
+import { LinkedIn, GitHub, ChevronLeft, ChevronRight } from '@mui/icons-material'
 import Image from "next/image"
 
-function Header({ activeSection, scrollToSection }) {
+interface HeaderProps {
+  activeSection: string;
+  scrollToSection: (sectionId: string) => void;
+}
+
+function Header({ activeSection, scrollToSection }: HeaderProps) {
   const sections = ['home', 'experience', 'skills', 'awards']
 
   return (
@@ -30,8 +33,8 @@ function Header({ activeSection, scrollToSection }) {
             <Button
               key={section}
               onClick={() => scrollToSection(section)}
-              variant={activeSection === section ? "default" : "ghost"}
-              size="sm"
+              variant={activeSection === section ? "contained" : "text"}
+              size="small"
               className="transition-none"
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -43,14 +46,18 @@ function Header({ activeSection, scrollToSection }) {
   )
 }
 
-function AwardCard({ organization, achievements, imagePath }) {
+interface AwardCardProps {
+  organization: string;
+  achievements: string[];
+  imagePath: string;
+}
+
+function AwardCard({ organization, achievements, imagePath }: AwardCardProps) {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">{organization}</CardTitle>
-          </CardHeader>
+          <CardHeader title={organization} className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               {achievements.map((achievement, index) => (
@@ -76,10 +83,15 @@ function AwardCard({ organization, achievements, imagePath }) {
   )
 }
 
+interface Slide {
+  image: string;
+  description: string;
+}
+
 function OnePercentBetterCard() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const slides = [
+  const slides: Slide[] = [
     {
       image: '/images/profile.png',
       description: 'Profile setup page. Asks user for their health information, including but not limited to height, weight, age, etc.'
@@ -106,10 +118,7 @@ function OnePercentBetterCard() {
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">One Percent Better</CardTitle>
-            <CardDescription className="text-xl">Better Each Day, In Every Way</CardDescription>
-          </CardHeader>
+          <CardHeader title="One Percent Better" subheader="Better Each Day, In Every Way" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">Developed a comprehensive health and wellness application, serving as a one-stop shop improvement.</li>
@@ -140,21 +149,21 @@ function OnePercentBetterCard() {
               </div>
             ))}
             
-            <button
+            <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
+              <ChevronLeft />
+            </IconButton>
             
-            <button
+            <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+              <ChevronRight />
+            </IconButton>
           </div>
           
           <div className="mt-4">
@@ -178,10 +187,8 @@ function OnePercentBetterCard() {
         </div>
       </div>
       <div className="mt-6 flex justify-center">
-        <Button asChild className="w-full max-w-md">
-          <a href="https://www.youtube.com/watch?v=lVU-Msay_a8" target="_blank" rel="noopener noreferrer">
-            View Demo
-          </a>
+        <Button variant="contained" className="w-full max-w-md" href="https://www.youtube.com/watch?v=lVU-Msay_a8" target="_blank" rel="noopener noreferrer">
+          View Demo
         </Button>
       </div>
     </Card>
@@ -191,7 +198,7 @@ function OnePercentBetterCard() {
 function NCHSNavCard() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const slides = [
+  const slides: Slide[] = [
     {
       image: '/images/schoolMap.png',
       description: 'Proprietary school map interface displaying all floors, classrooms, and facilities. Utilized QGIS software to vectorize and map school floor plans onto planet.'
@@ -218,10 +225,7 @@ function NCHSNavCard() {
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">NCHS Nav</CardTitle>
-            <CardDescription className="text-xl">Making Navigation Easier, One Step At A Time</CardDescription>
-          </CardHeader>
+          <CardHeader title="NCHS Nav" subheader="Making Navigation Easier, One Step At A Time" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">Created of a web app to streamline navigation within Naperville Central High School.</li>
@@ -253,21 +257,21 @@ function NCHSNavCard() {
               </div>
             ))}
             
-            <button
+            <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
+              <ChevronLeft />
+            </IconButton>
             
-            <button
+            <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+              <ChevronRight />
+            </IconButton>
           </div>
           
           <div className="mt-4">
@@ -291,10 +295,8 @@ function NCHSNavCard() {
         </div>
       </div>
       <div className="mt-6 flex justify-center">
-        <Button asChild className="w-full max-w-md">
-          <a href="https://drive.google.com/file/d/1ykBj-OlkENaVmdrls2s5IZzpLcIHOxaN/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-            View Demo
-          </a>
+        <Button variant="contained" className="w-full max-w-md" href="https://drive.google.com/file/d/1ykBj-OlkENaVmdrls2s5IZzpLcIHOxaN/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          View Demo
         </Button>
       </div>
     </Card>
@@ -306,9 +308,7 @@ function AndMuchMoreCard() {
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">And So Much More...</CardTitle>
-          </CardHeader>
+          <CardHeader title="And So Much More..." className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">Cityscape Project: Developed a Java animation utilizing loops and classes to create a dynamic, moving city scene for my APCSA class.</li>
@@ -316,9 +316,7 @@ function AndMuchMoreCard() {
               <li className="text-lg">Video 4Ever Project: Created a React-Native web application interfacing with a phpMyAdmin SQL database to display video store pricing given a dataset.</li>
             </ul>
           </CardContent>
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">Including Some Fun Projects!</CardTitle>
-          </CardHeader>
+          <CardHeader title="Including Some Fun Projects!" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">LeBron James Collage: Leveraged Java classes and loops to manipulate image pixels, creating a goofy picture collage of LeBron James for my APCSA class.</li>
@@ -340,16 +338,14 @@ function AndMuchMoreCard() {
           
           <div className="mt-4">
             <p className="text-sm text-gray-600">
-              Explore my GitHub profile for a comprehensive view of my  projects!
+              Explore my GitHub profile for a comprehensive view of my projects!
             </p>
           </div>
         </div>
       </div>
       <div className="mt-6 flex justify-center">
-        <Button asChild className="w-full max-w-md">
-          <a href="https://github.com/anayapte" target="_blank" rel="noopener noreferrer">
-            View GitHub Profile
-          </a>
+        <Button variant="contained" className="w-full max-w-md" href="https://github.com/anayapte" target="_blank" rel="noopener noreferrer">
+          View GitHub Profile
         </Button>
       </div>
     </Card>
@@ -357,9 +353,9 @@ function AndMuchMoreCard() {
 }
 
 function RudderVirtCard() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentImageIndex,   setCurrentImageIndex] = useState(0)
 
-  const slides = [
+  const slides: Slide[] = [
     {
       image: '/images/RudderUI.png',
       description: '500 error page developed as part of the RudderVirt user interface & frontend design improvements.'
@@ -386,10 +382,7 @@ function RudderVirtCard() {
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">Software Engineering Intern</CardTitle>
-            <CardDescription className="text-xl">Eigenvector LLC • 2024 - Present</CardDescription>
-          </CardHeader>
+          <CardHeader title="Software Engineering Intern" subheader="Eigenvector LLC • 2024 - Present" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">Contributed to both frontend and backend development of RudderVirt using PostgreSQL, Sveltekit, and TypeScript, demonstrating full-stack capabilities.</li>
@@ -420,21 +413,21 @@ function RudderVirtCard() {
               </div>
             ))}
             
-            <button
+            <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
+              <ChevronLeft />
+            </IconButton>
             
-            <button
+            <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
               aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+              <ChevronRight />
+            </IconButton>
           </div>
           
           <div className="mt-4">
@@ -466,10 +459,7 @@ function ArgonneCard() {
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">Argonne ESRP Data Analysis Team</CardTitle>
-            <CardDescription className="text-xl">Argonne National Laboratory • 2023 - Present</CardDescription>
-          </CardHeader>
+          <CardHeader title="Argonne ESRP Data Analysis Team" subheader="Argonne National Laboratory • 2023 - Present" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
@@ -495,15 +485,20 @@ function ArgonneCard() {
   )
 }
 
-function VolunteerCard({ title, organization, period, description, imagePath }) {
+interface VolunteerCardProps {
+  title: string;
+  organization: string;
+  period: string;
+  description: string[];
+  imagePath: string;
+}
+
+function VolunteerCard({ title, organization, period, description, imagePath }: VolunteerCardProps) {
   return (
     <Card className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
         <div className="text-center">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="text-2xl">{title}</CardTitle>
-            <CardDescription className="text-xl">{organization} • {period}</CardDescription>
-          </CardHeader>
+          <CardHeader title={title} subheader={`${organization} • ${period}`} className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               {description.map((item, index) => (
@@ -529,7 +524,12 @@ function VolunteerCard({ title, organization, period, description, imagePath }) 
   )
 }
 
-const programmingLanguages = [
+interface ProgrammingLanguage {
+  name: string;
+  icon: string;
+}
+
+const programmingLanguages: ProgrammingLanguage[] = [
   { name: 'JavaScript/HTML/CSS', icon: '/images/js.png' },
   { name: 'Python', icon: '/images/Python-logo.png' },
   { name: 'Java', icon: '/images/java.png' },
@@ -537,7 +537,13 @@ const programmingLanguages = [
   { name: 'PostgreSQL', icon: '/images/Postgresql_elephant.png' },
 ]
 
-const awards = [
+interface Award {
+  organization: string;
+  achievements: string[];
+  imagePath: string;
+}
+
+const awards: Award[] = [
   {
     organization: "Business Professionals of America (BPA)",
     achievements: [
@@ -568,7 +574,8 @@ const awards = [
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home')
-  const volunteerPositions = [
+  const [activeTab, setActiveTab] = useState('projects')
+  const volunteerPositions: VolunteerCardProps[] = [
     {
       title: "Co-Founder & Director",
       organization: "CodeBytes Youth Computer Science Camp",
@@ -618,7 +625,6 @@ export default function Portfolio() {
         behavior: 'smooth'
       })
       
-      // Set active section after scrolling
       setActiveSection(sectionId)
     }
   }, [])
@@ -669,7 +675,7 @@ export default function Portfolio() {
                       rel="noopener noreferrer"
                       className="flex items-center hover:text-primary transition-colors duration-200 text-xl"
                     >
-                      <Linkedin className="w-8 h-8 mr-2" />
+                      <LinkedIn className="w-8 h-8 mr-2" />
                       LinkedIn
                     </a>
                     <a
@@ -678,7 +684,7 @@ export default function Portfolio() {
                       rel="noopener noreferrer"
                       className="flex items-center hover:text-primary transition-colors duration-200 text-xl"
                     >
-                      <Github className="w-8 h-8 mr-2" />
+                      <GitHub className="w-8 h-8 mr-2" />
                       GitHub
                     </a>
                   </div>
@@ -709,27 +715,37 @@ export default function Portfolio() {
 
         <section id="experience" className="space-y-4 bg-background text-center border-t-2 border-gray-200 pt-16">
           <h2 className="text-4xl font-extrabold mb-8">Experience</h2>
-          <Tabs defaultValue="projects" className="w-full">
-            <TabsList className="justify-center">
-              <TabsTrigger value="projects">Projects</TabsTrigger>
-              <TabsTrigger value="internships">Internships & Research</TabsTrigger>
-              <TabsTrigger value="volunteering">Volunteering</TabsTrigger>
-            </TabsList>
-            <TabsContent value="projects" className="space-y-4">
-              <OnePercentBetterCard />
-              <NCHSNavCard />
-              <AndMuchMoreCard />
-            </TabsContent>
-            <TabsContent value="internships" className="space-y-4">
-              <RudderVirtCard />
-              <ArgonneCard />
-            </TabsContent>
-            <TabsContent value="volunteering" className="space-y-4">
-              {volunteerPositions.map((position, index) => (
-                <VolunteerCard key={index} {...position} />
-              ))}
-            </TabsContent>
+          <Tabs
+            value={activeTab}
+            onChange={(event: React.SyntheticEvent, newValue: string) => setActiveTab(newValue)}
+            centered
+          >
+            <Tab label="Projects" value="projects" />
+            <Tab label="Internships & Research" value="internships" />
+            <Tab label="Volunteering" value="volunteering" />
           </Tabs>
+          <div className="mt-4">
+            {activeTab ===   'projects' && (
+              <div className="space-y-4">
+                <OnePercentBetterCard />
+                <NCHSNavCard />
+                <AndMuchMoreCard />
+              </div>
+            )}
+            {activeTab === 'internships' && (
+              <div className="space-y-4">
+                <RudderVirtCard />
+                <ArgonneCard />
+              </div>
+            )}
+            {activeTab === 'volunteering' && (
+              <div className="space-y-4">
+                {volunteerPositions.map((position, index) => (
+                  <VolunteerCard key={index} {...position} />
+                ))}
+              </div>
+            )}
+          </div>
         </section>
 
         <section id="skills" className="space-y-8 bg-background text-center border-t-2 border-gray-200 pt-16">
