@@ -16,8 +16,8 @@ function Header({ activeSection, scrollToSection }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 bg-background border-b border-border z-50">
       <div className="container mx-auto py-2">
-        <nav className="flex flex-col sm:flex-row justify-between items-center">
-          <div className="flex items-center mb-2 sm:mb-0">
+        <nav className="flex flex-col items-center justify-center w-full">
+          <div className="flex items-center justify-center mb-2">
             <Image
               src="/images/microchip.png"
               alt="Microchip logo"
@@ -27,7 +27,7 @@ function Header({ activeSection, scrollToSection }: HeaderProps) {
             />
             <span className="text-2xl sm:text-4xl font-bold">Anay Apte</span>
           </div>
-          <div className="flex justify-center mt-2 space-x-1 overflow-x-auto">
+          <div className="flex justify-center mt-2 space-x-1 overflow-x-auto w-full">
             {sections.map((section) => (
               <Button
                 key={section}
@@ -151,7 +151,7 @@ function OnePercentBetterCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -159,7 +159,7 @@ function OnePercentBetterCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
@@ -259,7 +259,7 @@ function NCHSNavCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -267,7 +267,7 @@ function NCHSNavCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
@@ -416,7 +416,7 @@ function RudderVirtCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -424,7 +424,7 @@ function RudderVirtCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
