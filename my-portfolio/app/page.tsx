@@ -151,7 +151,7 @@ function OnePercentBetterCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute left-0 sm:left-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -159,7 +159,7 @@ function OnePercentBetterCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute right-0 sm:right-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
@@ -259,7 +259,7 @@ function NCHSNavCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute left-0 sm:left-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -267,7 +267,7 @@ function NCHSNavCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute right-0 sm:right-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
@@ -416,7 +416,7 @@ function RudderVirtCard() {
             
             <IconButton
               onClick={previousImage}
-              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute left-0 sm:left-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Previous image"
             >
               <ChevronLeft />
@@ -424,7 +424,7 @@ function RudderVirtCard() {
             
             <IconButton
               onClick={nextImage}
-              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white z-10"
+              className="absolute right-0 sm:right-2 top-0 h-full flex items-center bg-black/50 hover:bg-black/70 text-white z-10"
               aria-label="Next image"
             >
               <ChevronRight />
