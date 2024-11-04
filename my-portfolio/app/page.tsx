@@ -605,7 +605,7 @@ export default function Portfolio() {
       period: "2024 - Present",
       description: [
         "Played a key role in coordinating technology donations and refurbishing computers, contributing to digital equity initiatives.",
-        "Led a technology donation drive for Power Up through Aurora libraries, successfully collecting over 50 used computers. The initiative was featured on NCTV17.",
+        "Helped lead a technology donation drive for Power Up through Aurora libraries, successfully collecting over 50 used computers. The initiative was featured on NCTV17.",
         "Actively contributed to developing community engagement strategies, including tech drives and awareness campaigns."
       ],
       imagePath: "/images/powerUp.png"
