@@ -383,7 +383,7 @@ function RudderVirtCard() {
     <Card className="p-4 sm:p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
-          <CardHeader title="Software Engineering Intern" subheader="Eigenvector LLC • 2024 - Present" className="px-0 pt-0" />
+          <CardHeader title="Software Engineering Intern" subheader="Eigenvector LLC • 2024 - 2025" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
               <li className="text-sm sm:text-lg">Contributed to both frontend and backend development of RudderVirt using PostgreSQL, Sveltekit, and TypeScript, demonstrating full-stack capabilities.</li>
@@ -460,10 +460,10 @@ function ArgonneCard() {
     <Card className="p-4 sm:p-6">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-4 sm:gap-6">
         <div className="text-center">
-          <CardHeader title="Argonne ESRP Data Analysis Team" subheader="Argonne National Laboratory • 2023 - Present" className="px-0 pt-0" />
+          <CardHeader title="Argonne ESRP Data Analysis Team" subheader="Argonne National Laboratory • 2023 - 2025" className="px-0 pt-0" />
           <CardContent className="px-0">
             <ul className="list-disc list-inside space-y-2">
-              <li className="text-sm sm:text-lg">Active member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
+              <li className="text-sm sm:text-lg">Two year member of the Argonne Exemplary Student Research Program (ESRP) at Naperville Central, specializing in data analysis.</li>
               <li className="text-sm sm:text-lg">Contributed to research analyzing the toxic effects of Cadmium Selenide quantum dots uptake in plants.</li>
               <li className="text-sm sm:text-lg">Utilized spreadsheet formulas in Google Sheets to conduct analysis of both chloroplast morphology and chlorophyll content, demonstrating proficiency in data manipulation.</li>
             </ul>
@@ -550,14 +550,14 @@ const awards: Award[] = [
     achievements: [
       "Top 15 - National Leadership Conference, C++ Programming (2024)",
       "3rd Place - State Leadership Conference, C++ Programming (2024)",
-      "State Qualifier - State Leadership Conference, Python Programming (2022)"
+      "3rd Place - State Leadership Conference, Python Programming (2025)"
     ],
     imagePath: "/images/BPA.jpg"
   },
   {
     organization: "Naperville School District 203",
     achievements: [
-      "Career & Technical Education Student of the Month (2024)",
+      "2x Career & Technical Education Student of the Month (2024, 2025)",
       "Completed rigorous requirements to earn an endorsement in the Programming & Software Development Career Path from the state of Illinois.",
     ],
     imagePath: "/images/naperville.png"
@@ -580,7 +580,7 @@ export default function Portfolio() {
     {
       title: "Co-Founder & Director",
       organization: "CodeBytes Youth Computer Science Camp",
-      period: "2024 - Present",
+      period: "2024 - 2025",
       description: [
         "Founded and directed a comprehensive five-week introductory camp, successfully teaching Python programming to over 70 middle school students.",
         "Developed and implemented an engaging curriculum covering fundamental programming concepts.",
@@ -591,7 +591,7 @@ export default function Portfolio() {
     {
       title: "Data Manager",
       organization: "The Merry Tutor",
-      period: "2024 - Present",
+      period: "2024 - 2025",
       description: [
         "Leveraged advanced SQL queries to efficiently manage data for over 200 tutoring sessions and multiple tutors, ensuring accurate record-keeping and performance tracking.",
         "Generated comprehensive monthly reports by analyzing trends in attendance, tutoring session outcomes, and other key metrics, providing insights for organizational improvement.",
@@ -602,7 +602,7 @@ export default function Portfolio() {
     {
       title: "Volunteer",
       organization: "Power Up Project",
-      period: "2024 - Present",
+      period: "2024 - 2025",
       description: [
         "Played a key role in coordinating technology donations and refurbishing computers, contributing to digital equity initiatives.",
         "Helped lead a technology donation drive for Power Up through Aurora libraries, successfully collecting over 50 used computers. The initiative was featured on NCTV17.",
@@ -663,7 +663,7 @@ export default function Portfolio() {
                 <div className="space-y-4">
                   <h2 className="text-3xl sm:text-4xl font-extrabold">Anay Apte</h2>
                   <p className="text-lg sm:text-xl text-muted-foreground">
-                    Aspiring CS & Business Student | Software & Machine Learning Engineer | Social Entrepreneur
+                    CS Student at the University of Pennsylvania | Software & Machine Learning Engineer | Social Entrepreneur
                   </p>
                 </div>
                 <div className="flex flex-col space-y-6 text-base sm:text-lg">
@@ -704,7 +704,7 @@ export default function Portfolio() {
             <div className="w-full text-center">
               <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">About Me</h3>
               <p className="text-base sm:text-lg max-w-none">
-              Hello! My name is Anay Apte and I am a graduating senior in the Class of 2025 at Naperville Central High School. 
+              Hello! My name is Anay Apte and I am a graduated senior in the Class of 2025 at Naperville Central High School. 
               Through the past four years, I've developed a burning passion for computer science, specifically in Artificial Intelligence 
               and Web/App Development. My biggest dream is to one day help solve the world's problems through computer science. 
               In this portfolio, you'll find all the CS-related activities I've been involved in throughout high school. 
