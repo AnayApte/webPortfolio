@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Button, Card, CardContent, CardHeader, Tabs, Tab, IconButton } from '@mui/material'
 import { LinkedIn, GitHub, ChevronLeft, ChevronRight } from '@mui/icons-material'
 import Image from "next/image"
+import SignInButton from './components/SignInButton'
 
 interface HeaderProps {
   activeSection: string;
@@ -15,8 +16,13 @@ function Header({ activeSection, scrollToSection }: HeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-background border-b border-border z-50">
-      <div className="container mx-auto py-2">
-        <nav className="flex flex-col items-center justify-center w-full">
+      <div className="container mx-auto py-2 px-4">
+        <nav className="flex flex-col items-center justify-center w-full relative">
+          {/* Sign In Button - positioned absolutely in top right */}
+          <div className="absolute top-0 right-0">
+            <SignInButton />
+          </div>
+          
           <div className="flex items-center justify-center mb-2">
             <Image
               src="/images/microchip.png"
